@@ -21,7 +21,9 @@ public class HomeController {
 		return "menulist";
 	}
 	@GetMapping("/input")
-	public String input() {
+	public String input(Model model) {
+		ArrayList<MenuDTO> arMenu = mdao.getMenuList();
+		model.addAttribute("arMenu",arMenu);
 		return "menuinput";
 	}
 	@PostMapping("/insert")
@@ -29,10 +31,7 @@ public class HomeController {
 		String name = req.getParameter("name");
 		String price = req.getParameter("price");
 		mdao.insertMenu(name, Integer.parseInt(price));
-		
-		ArrayList<MenuDTO> arMenu = mdao.getMenuList();
-		mo.addAttribute("arMenu",arMenu);
-		return "menulist";
+		return "redirect:/input";
 	}
 	@GetMapping("/scorelist")
 	public String scorelist(Model mo) {
