@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="himedia.studyJSP.MenuDAO">
+	<select id="getMenuList" resultType="himedia.studyJSP.MenuDTO">
+		select id,name,price from menu order by id
+	</select>
+	<select id="getEmpList" resultType="himedia.studyJSP.EmployeesDTO">
+		select employee_id,emp_name,salary from employees order by salary
+	</select>
+	<select id="getDepList" resultType="himedia.studyJSP.depDTO">
+		select a.department_id, a.department_name, b.emp_name manager_name
+		from departments a, employees b
+		where a.manager_id=b.employee_id
+		order by department_id
+	</select>
+	<select id="findWorker" resultType="himedia.studyJSP.EmployeesDTO">
+		select employee_id, emp_name, salary from employees where employee_id=#{param1}
+	</select>
+	<select id="getCntList" resultType="himedia.studyJSP.cntDTO">
+		select country_iso_code, country_name, country_region from countries
+	</select>
+	<select id="ShowWorker" resultType="himedia.studyJSP.EmployeesDTO">
+		select emp_name, salary
+		from employees 
+		where salary between #{param1} and #{param2}
+		order by salary desc
+	</select>
+	<select id="getNameList" resultType="himedia.studyJSP.EmployeesDTO">
+		select employee_id, emp_name, salary from employees
+		where emp_name like concat('%',#{param1},'%')
+		order by employee_id
+	</select>
+	<insert id="insertMenu">
+		insert into menu set name=#{param1}, price=#{param2}
+	</insert>
+	<select id="getScoreList" resultType="himedia.studyJSP.scoreDTO">
+		select name, korean, english, math from score
+	</select>
+	<insert id="insertScore">
+		insert into score (name,korean,english,math) values(#{param1},#{param2},#{param3},#{param4})
+	</insert>
+</mapper>
