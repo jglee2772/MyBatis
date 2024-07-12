@@ -34,9 +34,22 @@
 		insert into menu set name=#{param1}, price=#{param2}
 	</insert>
 	<select id="getScoreList" resultType="himedia.studyJSP.scoreDTO">
-		select name, korean, english, math from score
+		select id, name, korean, english, math from score
 	</select>
 	<insert id="insertScore">
 		insert into score (name,korean,english,math) values(#{param1},#{param2},#{param3},#{param4})
 	</insert>
+	<delete id="deleteMenu">
+		delete from menu where id=#{param1}
+	</delete>
+	<delete id="deleteScore">
+		delete from score where id=#{param1}
+	</delete>
+	<update id="updateMenu">
+		update menu set name=#{param2}, price=#{param3} where id=#{param1}
+	</update>
+	<update id="updateScore">
+		update score set korean=#{param2}, english=#{param3}, math=#{param4}
+		where id=#{param1};
+	</update>
 </mapper>

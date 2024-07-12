@@ -16,4 +16,8 @@ public interface MenuDAO {
 	void insertMenu(String name, int pirce);
 	ArrayList<scoreDTO> getScoreList();
 	void insertScore(String name, int korean, int english, int math);
+	void deleteMenu(int id);
+	void deleteScore(int id);
+	void updateMenu(int id, String name, int price);
+	void updateScore(int id, int kr, int en, int mt);
 }
